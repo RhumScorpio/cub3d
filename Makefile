@@ -6,7 +6,7 @@
 #    By: clesaffr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:41:59 by clesaffr          #+#    #+#              #
-#    Updated: 2023/03/10 14:59:52 by clesaffr         ###   ########.fr        #
+#    Updated: 2023/03/21 22:25:55 by clesaffr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
 SRCS = main.c
+
+PATH_SRCS = srcs/
 
 PATH_OBJS = .objs/
 
@@ -35,10 +37,10 @@ all: lib $(PATH_OBJS) $(NAME)
 lib:
 	make -C $(PATH_LIBFT)
 
-$(PATH_OBJS):	
+$(PATH_OBJS):
 	mkdir -p $(PATH_OBJS)
 
-${PATH_OBJS}%.o : %.c
+${PATH_OBJS}%.o : ${PATH_SRCS}%.c
 	${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${F_OBJS}
