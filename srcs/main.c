@@ -47,32 +47,34 @@ int	try_open_file(char *file_name)
 
 int	get_type(char *line)
 {
+	int	type;
 	int	i;
 	
 	i = 0;
+	type = -1;
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (!ft_strncmp(line + i, "NO ", 3))
-		return (1);
+		type = 1;
 		//printf("found NO\n");
 	else if (!ft_strncmp(line + i, "SO ", 3))
-		return (2);
+		type = 2;
 		//printf("found SO\n");
 	else if (!ft_strncmp(line + i, "EA ", 3))
-		return (3);
+		type = 3;
 		//printf("found EA\n");
 	else if (!ft_strncmp(line + i, "WE ", 3))
-		return (4);
+		type = 4;
 		//printf("found WE\n");
 	else if (!ft_strncmp(line + i, "F ", 2))
-		return (5);
+		type = 5;
 		//printf("found floor\n");
 	else if (!ft_strncmp(line + i, "C ", 2))
-		return (6);
+		type = 6;
 		//printf("found ceiling\n");
-	else if (!ft_strncmp(line + i, "1", 1))
+	else if (!ft_strncmp(line + i, "1", 1)) //&& data_full)
 		return (0);
-	return (-1);
+	return (type);
 }
 
 int	find_xpm(char *line)
@@ -98,7 +100,7 @@ int	put_path_in_data(int size, char *line, t_data *data, int type)
 
 	i = 0;
 	str = malloc(sizeof(char) * (size + 1));
-	if (size < 0 || !str)
+	if (!str)
 		return (-1);
 	while (i < size)
 	{
@@ -129,6 +131,8 @@ int	get_path_texture(char *line, t_data *data, int type)
 	while (line[i] && ft_strchr("NO SEAW", line[i]) != -1)
 		i++;
 	size = find_xpm(line + i);
+	if (size < 0)
+		return (-1);
 	return (put_path_in_data(size, line, data, type));
 }
 
@@ -148,7 +152,7 @@ int	get_map(char *line, t_data *data, int type)
 	return (0);
 }
 
-int	put_in_data(char *line, t_data *data, int type)
+int	type_to_data(char *line, t_data *data, int type)
 {
 	if (type < 5 && type > 0)
 		return (get_path_texture(line, data, type));
@@ -161,9 +165,10 @@ int	put_in_data(char *line, t_data *data, int type)
 
 int	parsing_file(char *name, t_data *data)
 {
-	int	fd;
-	int	i;
-	char *line;
+	int		fd;
+	int		i;
+	char	*line;
+	int		type;
 	
 	fd = open(name, O_RDONLY);
 	i = 0;
@@ -172,7 +177,8 @@ int	parsing_file(char *name, t_data *data)
 	{
 		i++;
 		printf("%d -- %s\n", i, line);
-		put_in_data(line, data, get_type(line));
+		type = get_type(line);
+		type_to_data(line, data, type);
 		free(line);
 	}
 	free(line);
