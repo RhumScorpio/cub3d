@@ -21,15 +21,26 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-typedef struct	s_data
+enum
 {
-	char **map;
-	char *no;
-	char *so;
-	char *ea;
-	char *we;
-	int floor[3];
-	int ceiling[3];
+	MAP,
+	NO,
+	SO,
+	EA,
+	WE,
+	FLOOR,
+	CEILING
+};
+
+typedef struct s_data
+{
+	char	**map;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	int		floor;
+	int		ceiling;
 }				t_data;
 
 #endif

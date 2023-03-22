@@ -47,34 +47,26 @@ int	try_open_file(char *file_name)
 
 int	get_type(char *line)
 {
-	int	type;
 	int	i;
 	
 	i = 0;
-	type = -1;
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (!ft_strncmp(line + i, "NO ", 3))
-		type = 1;
-		//printf("found NO\n");
+		return(NO);
 	else if (!ft_strncmp(line + i, "SO ", 3))
-		type = 2;
-		//printf("found SO\n");
+		return(SO);
 	else if (!ft_strncmp(line + i, "EA ", 3))
-		type = 3;
-		//printf("found EA\n");
+		return(EA);
 	else if (!ft_strncmp(line + i, "WE ", 3))
-		type = 4;
-		//printf("found WE\n");
+		return(WE);
 	else if (!ft_strncmp(line + i, "F ", 2))
-		type = 5;
-		//printf("found floor\n");
+		return(FLOOR);
 	else if (!ft_strncmp(line + i, "C ", 2))
-		type = 6;
-		//printf("found ceiling\n");
+		return(CEILING);
 	else if (!ft_strncmp(line + i, "1", 1)) //&& data_full)
-		return (0);
-	return (type);
+		return (MAP);
+	return (-1);
 }
 
 int	find_xpm(char *line)
@@ -108,13 +100,13 @@ int	put_path_in_data(int size, char *line, t_data *data, int type)
 		i++;
 	}
 	str[i] = '\0';
-	if (type == 1)
+	if (type == NO)
 		data->no = str;
-	else if (type == 2)
+	else if (type == SO)
 		data->so = str;
-	else if (type == 3)
+	else if (type == EA)
 		data->ea = str;
-	else if (type == 4)
+	else if (type == WE)
 		data->we = str;
 	return (0);
 }
@@ -136,7 +128,7 @@ int	get_path_texture(char *line, t_data *data, int type)
 	return (put_path_in_data(size, line, data, type));
 }
 
-int	get_coloring(char *line, t_data *data, int type)
+int	get_color_floor_ceiling(char *line, t_data *data, int type)
 {
 	(void)line;
 	(void)type;
@@ -154,11 +146,11 @@ int	get_map(char *line, t_data *data, int type)
 
 int	type_to_data(char *line, t_data *data, int type)
 {
-	if (type < 5 && type > 0)
+	if (type < FLOOR && type > MAP)
 		return (get_path_texture(line, data, type));
-	else if (type > 4)
-		return (get_coloring(line, data, type));
-	else if (type == 0)
+	else if (type == FLOOR && type == CEILING)
+		return (get_color_floor_ceiling(line, data, type));
+	else if (type == MAP)
 		return (get_map(line, data, type));
 	return (-1);
 }
@@ -187,7 +179,27 @@ int	parsing_file(char *name, t_data *data)
 
 void	put_struct_data(t_data *data)
 {
-	(void)data;
+	printf("PUT_STRUCT=====\n");
+	if (data->no)
+		printf("%s\n", data->no);
+	if (data->so)
+		printf("%s\n", data->so);
+	if (data->ea)
+		printf("%s\n", data->ea);
+	if (data->we)
+		printf("%s\n", data->we);
+}
+
+void	free_struct_data(t_data *data)
+{
+	if (data->no)
+		free(data->no);
+	if (data->so)
+		free(data->so);
+	if (data->ea)
+		free(data->ea);
+	if (data->we)
+		free(data->we);
 }
 
 int main(int ac, char **av)
@@ -203,6 +215,7 @@ int main(int ac, char **av)
 		if (!parsing_file(av[1], &data))
 			return (0);
 		put_struct_data(&data);
+		free_struct_data(&data);
 	}
 	else
 		ft_putstr_fd("Put a file please.\n", 2);
