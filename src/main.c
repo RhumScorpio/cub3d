@@ -6,22 +6,31 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/06 16:03:41 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/13 00:31:35 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "config.h"
+#include "cub3D.h"
 #include "ft_io.h"
-#include "ft_string.h"
+#include "MLX42.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-int	main(int const ac, char const *const *const av)
+int	main(
+	int const ac __attribute__((unused)),
+	char const *const *const av __attribute__((unused)))
 {
-	ft_printf("Hello World");
-	if (ac == 2)
+	mlx_t *const	mlx = mlx_init(g_window_width, g_window_height, "cub3D", true);
+	char			buffer[1LU];
+
+	if (!mlx)
 	{
-		ft_printf(", you just entered: [%s]", av[1]);
-		ft_printf(", which is %llu characters long", ft_strlen(av[1]));
+		mlx_perror(NULL);
+		return (EXIT_FAILURE);
 	}
-	write(STDOUT_FILENO, (char const [1]){'\n'}, 1LLU);
+	read(STDIN_FILENO, buffer, 1LU);
+	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
