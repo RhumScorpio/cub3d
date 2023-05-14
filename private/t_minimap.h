@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:12:19 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 02:10:19 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:33:47 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ struct	s_minimap
 	t_image	image;
 };
 
-void	minimap_destroy(t_minimap *const minimap, void *const display_ptr)
+void	minimap_destroy(t_minimap *const minimap, void *const mlx_ptr)
 		__attribute__((nonnull));
 
-int		minimap_init(t_minimap *const minimap, void *const display_ptr)
+int		minimap_init(t_minimap *const minimap, void *const mlx_ptr)
 		__attribute__((nonnull));
 
 #endif

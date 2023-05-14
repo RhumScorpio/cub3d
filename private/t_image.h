@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:16:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 01:34:55 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/14 23:03:31 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,15 @@ struct	s_image
 	uint16_t	line_len;
 	uint16_t	endian;
 };
+
+void	image_destroy(t_image *const image, void *const mlx_ptr)
+		__attribute__((nonnull));
+
+int		image_init(
+			t_image *const image,
+			uint16_t const width,
+			uint16_t const height,
+			void *const mlx_ptr)
+		__attribute__((nonnull));
 
 #endif

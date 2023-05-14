@@ -6,40 +6,82 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 02:14:26 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/15 01:00:22 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_display.h"
-#include "t_game.h"
-#include <stdio.h>
+#include "cub3D.h"
+#include "ft_io.h"
+#include "mlx.h"
 #include <stdlib.h>
+
+/**
+ * @brief	Initialize the program data.
+ * 
+ * @param	mlx_ptr A reference to the mlx pointer to initialize.
+ * @param	game A reference to the t_game instance to initialize.
+ * @param	window A reference to the t_window instance to initialize.
+ * 
+ * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
+ */
+inline static int	__init(
+	void **const mlx_ptr,
+	t_game *const game,
+	t_window *const window)
+{
+	*mlx_ptr = mlx_init();
+	if (!*mlx_ptr)
+	{
+		ft_putstr_fd("mlx_init() failed\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	if (game_init(game, *mlx_ptr))
+	{
+		ft_putstr_fd("game_init() failed\n", STDERR_FILENO);
+		mlx_destroy_display(*mlx_ptr);
+		return (EXIT_FAILURE);
+	}
+	if (window_init(window, *mlx_ptr))
+	{
+		ft_putstr_fd("window_init() failed\n", STDERR_FILENO);
+		game_destroy(game, *mlx_ptr);
+		mlx_destroy_display(*mlx_ptr);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * @brief	Release the resources related to the program data.
+ * 
+ * @param	mlx_ptr A reference to the mlx pointer to destroy.
+ * @param	game A reference to the t_game instance to destroy.
+ * @param	window A reference to the t_window instance to destroy.
+ */
+inline static void	__destroy(
+	void **const mlx_ptr,
+	t_game *const game,
+	t_window *const window)
+{
+	window_destroy(window, *mlx_ptr);
+	game_destroy(game, *mlx_ptr);
+	mlx_destroy_display(*mlx_ptr);
+	free(*mlx_ptr);
+}
 
 int	main(
 	int const ac __attribute__((unused)),
 	char const *const *const av __attribute__((unused)))
 {
+	void		*mlx_ptr;
 	t_game		game;
-	t_display	display;
+	t_window	window;
 
-	if (game_init(&game))
-	{
-		perror("game_init()");
+	if (__init(&mlx_ptr, &game, &window))
 		return (EXIT_FAILURE);
-	}
-	if (display_init(&display))
-	{
-		perror("display_init()");
-		return (EXIT_FAILURE);
-	}
-	if (minimap_init(&game.minimap, display.ptr))
-	{
-		perror("minimap_init()");
-		return (EXIT_FAILURE);
-	}
-	for (size_t i = 0LU ; i < 100000000 ; ++i) ;
-	minimap_destroy(&game.minimap, display.ptr);
-	display_destroy(&display);
-	game_destroy(&game);
+	hook_setup(mlx_ptr, &game, &window);
+	mlx_loop(mlx_ptr);
+	mlx_do_key_autorepeaton(mlx_ptr);
+	__destroy(&mlx_ptr, &game, &window);
 	return (EXIT_SUCCESS);
 }

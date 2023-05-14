@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/05/14 01:57:36 by jodufour         ###   ########.fr        #
+#    Updated: 2023/05/15 00:53:31 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,13 +58,20 @@ MLX_A				=	${MLX_DIR}/${MLX}.a
 #            SOURCE FILES            #
 ######################################
 SRC				=	\
-					${addprefix display/,	\
-						display_destroy.c	\
-						display_init.c		\
-					}						\
 					${addprefix game/,		\
 						game_destroy.c		\
 						game_init.c			\
+					}						\
+					${addprefix hook/,		\
+						hook_setup.c		\
+					}						\
+					${addprefix image/,		\
+						image_destroy.c		\
+						image_init.c		\
+					}						\
+					${addprefix map/,		\
+						map_destroy.c		\
+						map_init.c			\
 					}						\
 					${addprefix minimap/,	\
 						minimap_destroy.c	\

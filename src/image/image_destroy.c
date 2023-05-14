@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_display.h                                        :+:      :+:    :+:   */
+/*   image_destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 00:40:26 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:56:36 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 23:07:55 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 23:08:33 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_DISPLAY_H
-# define T_DISPLAY_H
+#include "mlx.h"
+#include "t_image.h"
 
-# include "t_window.h"
-
-typedef struct s_display	t_display;
-
-struct	s_display
+/**
+ * @brief	Release the resources related to a t_image instance.
+ * 
+ * @param	image A reference to the t_image instance to destroy.
+ * @param	mlx_ptr A reference to the mlx context to use for the destruction.
+ */
+void	image_destroy(t_image *const image, void *const mlx_ptr)
 {
-	void		*ptr;
-	t_window	window;
-};
-
-void	display_destroy(t_display *const display)
-		__attribute__((nonnull));
-
-int		display_init(t_display *const display)
-		__attribute__((nonnull));
-
-#endif
+	mlx_destroy_image(mlx_ptr, image->ptr);
+}

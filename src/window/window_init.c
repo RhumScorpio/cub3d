@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 00:48:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 01:54:25 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/15 00:21:39 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
  * @brief	Initialize a t_window instance.
  * 
  * @param	window	A reference to the t_window instance to initialize.
- * @param	display_ptr	The display pointer to use for the initialization.
+ * @param	mlx_ptr	A reference to the mlx context to use for the initialization.
  * 
  * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
  */
-int	window_init(t_window *const window, void *const display_ptr)
+int	window_init(t_window *const window, void *const mlx_ptr)
 {
 	if (g_full_screen)
 		mlx_get_screen_size(
-			display_ptr,
+			mlx_ptr,
 			(int *)&window->width,
 			(int *)&window->height);
 	else
@@ -36,7 +36,7 @@ int	window_init(t_window *const window, void *const display_ptr)
 		window->height = g_window_height;
 	}
 	window->ptr = mlx_new_window(
-			display_ptr,
+			mlx_ptr,
 			window->width,
 			window->height,
 			g_window_title);

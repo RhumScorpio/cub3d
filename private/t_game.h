@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:14:05 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 01:51:19 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:29:52 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ struct	s_game
 	t_player	player;
 };
 
-void	game_destroy(t_game *const game)
+void	game_destroy(t_game *const game, void *const mlx_ptr)
 		__attribute__((nonnull));
 
-int		game_init(t_game *const game)
+int		game_init(t_game *const game, void *const mlx_ptr)
 		__attribute__((nonnull));
 
 #endif
