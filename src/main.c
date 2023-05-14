@@ -6,31 +6,40 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/13 00:31:35 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/14 02:14:26 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
-#include "cub3D.h"
-#include "ft_io.h"
-#include "MLX42.h"
+#include "t_display.h"
+#include "t_game.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 int	main(
 	int const ac __attribute__((unused)),
 	char const *const *const av __attribute__((unused)))
 {
-	mlx_t *const	mlx = mlx_init(g_window_width, g_window_height, "cub3D", true);
-	char			buffer[1LU];
+	t_game		game;
+	t_display	display;
 
-	if (!mlx)
+	if (game_init(&game))
 	{
-		mlx_perror(NULL);
+		perror("game_init()");
 		return (EXIT_FAILURE);
 	}
-	read(STDIN_FILENO, buffer, 1LU);
-	mlx_terminate(mlx);
+	if (display_init(&display))
+	{
+		perror("display_init()");
+		return (EXIT_FAILURE);
+	}
+	if (minimap_init(&game.minimap, display.ptr))
+	{
+		perror("minimap_init()");
+		return (EXIT_FAILURE);
+	}
+	for (size_t i = 0LU ; i < 100000000 ; ++i) ;
+	minimap_destroy(&game.minimap, display.ptr);
+	display_destroy(&display);
+	game_destroy(&game);
 	return (EXIT_SUCCESS);
 }

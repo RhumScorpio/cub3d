@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:04:55 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 01:42:27 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 02:16:30 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "t_game.h"
+#include <stdlib.h>
 
-#endif
+/**
+ * @brief	Initialize a t_game instance.
+ * 
+ * @param	game A reference to the t_game instance to initialize.
+ * 
+ * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
+ */
+int	game_init(t_game *const game)
+// TODO
+{
+	(void)game;
+	return (EXIT_SUCCESS);
+}

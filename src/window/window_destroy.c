@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   window_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:04:55 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 00:54:52 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 01:54:10 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "mlx.h"
+#include "t_window.h"
 
-#endif
+/**
+ * @brief	Release the resources related to a t_window instance.
+ * 
+ * @param	window	A reference to the t_window instance to destroy.
+ * @param	display_ptr The display pointer to use for the destruction.
+ */
+void	window_destroy(t_window *const window, void *const display_ptr)
+{
+	mlx_destroy_window(display_ptr, window->ptr);
+}

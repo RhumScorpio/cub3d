@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   t_minimap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:04:55 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 01:12:19 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 02:10:19 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef T_MINIMAP_H
+# define T_MINIMAP_H
+
+# include "t_image.h"
+# include <stddef.h>
+
+typedef struct s_minimap	t_minimap;
+
+struct	s_minimap
+{
+	size_t	width;
+	size_t	height;
+	t_image	image;
+};
+
+void	minimap_destroy(t_minimap *const minimap, void *const display_ptr)
+		__attribute__((nonnull));
+
+int		minimap_init(t_minimap *const minimap, void *const display_ptr)
+		__attribute__((nonnull));
 
 #endif

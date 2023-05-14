@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   minimap_destroy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:04:55 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 01:55:46 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 02:12:53 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "mlx.h"
+#include "t_minimap.h"
 
-#endif
+/**
+ * @brief	Release the resources related to a t_minimap instance.
+ * 
+ * @param	minimap	A reference to the t_minimap instance to destroy.
+ * @param	display_ptr The display pointer to use for the destruction.
+ */
+void	minimap_destroy(t_minimap *const minimap, void *const display_ptr)
+{
+	mlx_destroy_image(display_ptr, minimap->image.ptr);
+}

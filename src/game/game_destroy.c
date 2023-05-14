@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   game_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 00:04:55 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/14 01:45:42 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/14 02:16:04 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "t_game.h"
 
-#endif
+/**
+ * @brief	Release the resources related to a t_game instance.
+ * 
+ * @param	game A reference to the t_game instance to destroy.
+ */
+void	game_destroy(t_game *const game)
+// TODO
+{
+	(void)game;
+}
