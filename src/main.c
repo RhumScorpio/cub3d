@@ -6,12 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/15 01:00:22 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:13:33 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
 #include "ft_io.h"
+#include "hook.h"
 #include "mlx.h"
 #include <stdlib.h>
 
@@ -79,7 +79,8 @@ int	main(
 
 	if (__init(&mlx_ptr, &game, &window))
 		return (EXIT_FAILURE);
-	hook_setup(mlx_ptr, &game, &window);
+	hook_setup(&(t_hook_param){mlx_ptr, &game, &window});
+	mlx_do_key_autorepeatoff(mlx_ptr);
 	mlx_loop(mlx_ptr);
 	mlx_do_key_autorepeaton(mlx_ptr);
 	__destroy(&mlx_ptr, &game, &window);

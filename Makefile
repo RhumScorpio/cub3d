@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/05/15 00:53:31 by jodufour         ###   ########.fr        #
+#    Updated: 2023/05/16 16:14:51 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,8 @@ SRC				=	\
 						game_init.c			\
 					}						\
 					${addprefix hook/,		\
+						hook_key_press.c	\
+						hook_key_release.c	\
 						hook_setup.c		\
 					}						\
 					${addprefix image/,		\
