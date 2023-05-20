@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_hook_param.h                                     :+:      :+:    :+:   */
+/*   t_axis_2d.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:25:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/19 19:47:02 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/21 00:09:12 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/21 00:13:12 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_HOOK_PARAM_H
-# define T_HOOK_PARAM_H
+#ifndef T_AXIS_2D_H
+# define T_AXIS_2D_H
 
-# include "t_game.h"
-# include "t_window.h"
+# include <stdint.h>
 
-typedef struct s_hook_param	t_hook_param;
+typedef struct s_axis_2d	t_axis_2d;
 
-struct s_hook_param
+struct s_axis_2d
 {
-	void *const		mlx_ptr;
-	t_game *const	game;
-	t_window *const	window;
+	uint16_t	x;
+	uint16_t	y;
 };
 
 #endif

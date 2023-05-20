@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_minimap.h                                        :+:      :+:    :+:   */
+/*   lookup_event.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 01:12:19 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/21 01:24:26 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/16 22:40:00 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/20 01:34:51 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_MINIMAP_H
-# define T_MINIMAP_H
+#ifndef LOOKUP_EVENT_H
+# define LOOKUP_EVENT_H
 
-# include "t_image.h"
 # include <stddef.h>
+# include <X11/keysym.h>
 
-// REMIND: Shouldn't we just store the minimap as a t_image?
+typedef void			(*t_func)(void *const);
+typedef struct s_event	t_event;
 
-typedef struct s_minimap	t_minimap;
-
-struct	s_minimap
+struct	s_event
 {
-	uint16_t	width;
-	uint16_t	height;
-	t_image		image;
+	int const		keysym;
+	t_func const	func_press;
+	t_func const	func_release;
 };
 
-void	minimap_destroy(t_minimap *const minimap, void *const mlx_ptr)
+void	event_quit(void *const raw_data)
 		__attribute__((nonnull));
 
-int		minimap_init(t_minimap *const minimap, void *const mlx_ptr)
-		__attribute__((nonnull));
+static t_event const	g_event[] = {
+{XK_Escape, event_quit, NULL},
+};
+static size_t const		g_event_size = sizeof(g_event) / sizeof(*g_event);
 
 #endif

@@ -6,14 +6,15 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:16:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 23:03:31 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/21 00:56:12 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_IMAGE_H
 # define T_IMAGE_H
 
-# include <stdint.h>
+# include "t_axis_2d.h"
+# include "t_square.h"
 
 typedef struct s_image	t_image;
 
@@ -29,6 +30,11 @@ struct	s_image
 };
 
 void	image_destroy(t_image *const image, void *const mlx_ptr)
+		__attribute__((nonnull));
+void	image_fill_square(
+			t_image *const image,
+			t_square const *const square,
+			t_axis_2d const *const axis)
 		__attribute__((nonnull));
 
 int		image_init(

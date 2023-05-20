@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_hook_param.h                                     :+:      :+:    :+:   */
+/*   event_quit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:25:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/19 19:47:02 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/20 01:30:12 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_HOOK_PARAM_H
-# define T_HOOK_PARAM_H
+#include "mlx.h"
 
-# include "t_game.h"
-# include "t_window.h"
+typedef struct s_data	t_data;
 
-typedef struct s_hook_param	t_hook_param;
-
-struct s_hook_param
+struct s_data
 {
-	void *const		mlx_ptr;
-	t_game *const	game;
-	t_window *const	window;
+	void *const	mlx_ptr;
 };
 
-#endif
+/**
+ * @brief	End the mlx loop, allowing then to release resources
+ * 			and exit the program.
+ * 
+ * @param	raw_data A reference to the t_data instance to use
+ * 			to end the mlx loop.
+ */
+void	event_quit(void *const raw_data)
+{
+	t_data *const	data = raw_data;
+
+	mlx_loop_end(data->mlx_ptr);
+}

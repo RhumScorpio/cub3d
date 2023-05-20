@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:42:27 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 22:31:15 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/20 23:19:53 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	game_init(t_game *const game, void *const mlx_ptr)
 		map_destroy(&game->map, mlx_ptr);
 		return (EXIT_FAILURE);
 	}
+	game->has_to_be_displayed = true;
 	return (EXIT_SUCCESS);
 }

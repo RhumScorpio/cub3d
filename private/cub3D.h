@@ -6,11 +6,14 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/16 16:12:11 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/20 00:31:50 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+void	event_none(void *const raw_data)
+		__attribute__((nonnull));
 
 #endif

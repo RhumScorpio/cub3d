@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/05/16 16:14:51 by jodufour         ###   ########.fr        #
+#    Updated: 2023/05/21 00:56:35 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,13 @@ MLX_A				=	${MLX_DIR}/${MLX}.a
 #            SOURCE FILES            #
 ######################################
 SRC				=	\
+					${addprefix event/,		\
+						event_none.c		\
+						event_quit.c		\
+					}						\
 					${addprefix game/,		\
 						game_destroy.c		\
+						game_display.c		\
 						game_init.c			\
 					}						\
 					${addprefix hook/,		\
@@ -69,6 +74,7 @@ SRC				=	\
 					}						\
 					${addprefix image/,		\
 						image_destroy.c		\
+						image_fill_square.c	\
 						image_init.c		\
 					}						\
 					${addprefix map/,		\

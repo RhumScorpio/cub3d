@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_hook_param.h                                     :+:      :+:    :+:   */
+/*   t_square.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:25:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/19 19:47:02 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/20 23:51:46 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/21 00:05:11 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_HOOK_PARAM_H
-# define T_HOOK_PARAM_H
+#ifndef T_SQUARE_H
+# define T_SQUARE_H
 
-# include "t_game.h"
-# include "t_window.h"
+# include <stdint.h>
 
-typedef struct s_hook_param	t_hook_param;
+typedef struct s_square	t_square;
 
-struct s_hook_param
+struct s_square
 {
-	void *const		mlx_ptr;
-	t_game *const	game;
-	t_window *const	window;
+	uint16_t	width;
+	uint32_t	color;
 };
 
 #endif

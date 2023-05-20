@@ -6,10 +6,11 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 00:28:18 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/16 16:16:47 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/20 01:32:50 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
 #include "hook.h"
 #include "mlx.h"
 #include "t_game.h"
@@ -66,7 +67,7 @@ inline static void	__top_right_cross_click(t_hook_param *const data)
 		data->window->ptr,
 		DestroyNotify,
 		StructureNotifyMask,
-		&mlx_loop_end,
+		mlx_loop_end,
 		data->mlx_ptr);
 }
 
@@ -84,8 +85,8 @@ inline static void	__expose(t_hook_param *const data)
 		data->window->ptr,
 		Expose,
 		ExposureMask,
-		NULL,
-		NULL);
+		(int (*)())game_display,
+		data);
 }
 
 /**
@@ -101,5 +102,8 @@ void	hook_setup(t_hook_param *const data)
 	__key_release(data);
 	__top_right_cross_click(data);
 	__expose(data);
-	mlx_loop_hook(data->mlx_ptr, NULL, NULL);
+	mlx_loop_hook(
+		data->mlx_ptr,
+		(int (*)())event_none,
+		data);
 }
