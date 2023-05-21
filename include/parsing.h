@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 typedef struct s_player	t_player;
 
@@ -59,5 +62,6 @@ struct s_game
 };
 
 int	parsing(const char *file_name);
+int get_data_from_file(const char *file_name, t_map *map_data);
 
 #endif

@@ -60,6 +60,7 @@ MLX_A				=	${MLX_DIR}/${MLX}.a
 SRC				=	\
 					main.c \
 					parsing.c \
+					get_data_from_file.c
 
 ######################################
 #            OBJECT FILES            #
