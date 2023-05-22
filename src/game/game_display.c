@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:57:46 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/20 23:44:30 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:24:04 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ inline static void	__minimap(
 	mlx_put_image_to_window(
 		mlx_ptr,
 		window->ptr,
-		game->minimap.image.ptr,
+		game->minimap.ptr,
 		0,
 		0);
 }

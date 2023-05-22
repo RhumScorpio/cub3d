@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:16:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/21 00:56:12 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:46:25 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_image	t_image;
 
-struct	s_image
+struct s_image
 {
 	void		*ptr;
 	uint32_t	*addr;

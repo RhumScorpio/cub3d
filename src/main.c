@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/20 23:25:28 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/23 00:03:11 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ inline static int	__init(
 	{
 		ft_putstr_fd("game_init() failed\n", STDERR_FILENO);
 		mlx_destroy_display(*mlx_ptr);
+		free(*mlx_ptr);
 		return (EXIT_FAILURE);
 	}
 	if (window_init(window, *mlx_ptr))
@@ -46,6 +47,7 @@ inline static int	__init(
 		ft_putstr_fd("window_init() failed\n", STDERR_FILENO);
 		game_destroy(game, *mlx_ptr);
 		mlx_destroy_display(*mlx_ptr);
+		free(*mlx_ptr);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

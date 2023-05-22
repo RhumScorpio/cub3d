@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 00:39:22 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 23:42:39 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/21 21:15:15 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_window	t_window;
 
-struct	s_window
+struct s_window
 {
 	void		*ptr;
 	uint16_t	width;

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_destroy.c                                  :+:      :+:    :+:   */
+/*   player_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 01:55:46 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 21:34:08 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/22 23:55:09 by jodufour          #+#    #+#             */
+/*   Updated: 2023/05/23 00:15:08 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "t_minimap.h"
+#include "t_player.h"
 
 /**
- * @brief	Release the resources related to a t_minimap instance.
+ * @brief	Release the resources related to a t_player instance.
  * 
- * @param	minimap	A reference to the t_minimap instance to destroy.
- * @param	mlx_ptr A reference to the mlx context to use for the destruction.
+ * @param	player A reference to the t_player instance to destroy.
  */
-void	minimap_destroy(t_minimap *const minimap, void *const mlx_ptr)
+void	player_destroy(t_player *const player __attribute__((unused)))
 {
-	mlx_destroy_image(mlx_ptr, minimap->image.ptr);
 }

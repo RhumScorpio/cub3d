@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:14:05 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/20 23:18:48 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:33:26 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 # define T_GAME_H
 
 # include "t_map.h"
-# include "t_minimap.h"
 # include "t_player.h"
 # include <stdbool.h>
 
 typedef struct s_game	t_game;
 
-struct	s_game
+struct s_game
 {
 	t_map		map;
-	t_minimap	minimap;
 	t_player	player;
+	t_image		minimap;
 	bool		has_to_be_displayed;
 };
 

@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:45:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/15 00:05:32 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/05/22 23:57:55 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
  */
 void	game_destroy(t_game *const game, void *const mlx_ptr)
 {
-	minimap_destroy(&game->minimap, mlx_ptr);
+	image_destroy(&game->minimap, mlx_ptr);
+	player_destroy(&game->player);
 	map_destroy(&game->map, mlx_ptr);
 }

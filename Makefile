@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/05/21 00:56:35 by jodufour         ###   ########.fr        #
+#    Updated: 2023/05/23 00:12:05 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,10 @@ SRC				=	\
 						map_destroy.c		\
 						map_init.c			\
 					}						\
-					${addprefix minimap/,	\
-						minimap_destroy.c	\
-						minimap_init.c		\
+					${addprefix player/,	\
+						player_destroy.c	\
+						player_init.c		\
+						player_print.c		\
 					}						\
 					${addprefix window/,	\
 						window_destroy.c	\
