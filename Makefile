@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/05/23 00:12:05 by jodufour         ###   ########.fr        #
+#    Updated: 2023/06/14 00:47:33 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,38 +58,57 @@ MLX_A				=	${MLX_DIR}/${MLX}.a
 #            SOURCE FILES            #
 ######################################
 SRC				=	\
-					${addprefix event/,		\
-						event_none.c		\
-						event_quit.c		\
-					}						\
-					${addprefix game/,		\
-						game_destroy.c		\
-						game_display.c		\
-						game_init.c			\
-					}						\
-					${addprefix hook/,		\
-						hook_key_press.c	\
-						hook_key_release.c	\
-						hook_setup.c		\
-					}						\
-					${addprefix image/,		\
-						image_destroy.c		\
-						image_fill_square.c	\
-						image_init.c		\
-					}						\
-					${addprefix map/,		\
-						map_destroy.c		\
-						map_init.c			\
-					}						\
-					${addprefix player/,	\
-						player_destroy.c	\
-						player_init.c		\
-						player_print.c		\
-					}						\
-					${addprefix window/,	\
-						window_destroy.c	\
-						window_init.c		\
-					}						\
+					${addprefix direction/,					\
+						${addprefix list/,					\
+							direction_list_add_after.c		\
+							direction_list_add_back.c		\
+							direction_list_add_before.c		\
+							direction_list_add_front.c		\
+							direction_list_clear.c			\
+							direction_list_del_one.c		\
+							direction_list_init.c			\
+							direction_list_print.c			\
+							direction_list_push_after.c		\
+							direction_list_push_back.c		\
+							direction_list_push_before.c	\
+							direction_list_push_front.c		\
+						}									\
+						${addprefix node/,					\
+							direction_node_new.c			\
+						}									\
+					}										\
+					${addprefix event/,						\
+						event_none.c						\
+						event_quit.c						\
+					}										\
+					${addprefix game/,						\
+						game_destroy.c						\
+						game_display.c						\
+						game_init.c							\
+					}										\
+					${addprefix hook/,						\
+						hook_key_press.c					\
+						hook_key_release.c					\
+						hook_setup.c						\
+					}										\
+					${addprefix image/,						\
+						image_destroy.c						\
+						image_fill_square.c					\
+						image_init.c						\
+					}										\
+					${addprefix map/,						\
+						map_destroy.c						\
+						map_init.c							\
+					}										\
+					${addprefix player/,					\
+						player_destroy.c					\
+						player_init.c						\
+						player_print.c						\
+					}										\
+					${addprefix window/,					\
+						window_destroy.c					\
+						window_init.c						\
+					}										\
 					main.c
 
 ######################################

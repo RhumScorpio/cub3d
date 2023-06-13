@@ -6,13 +6,14 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:14:05 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/22 21:33:26 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:49:00 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_GAME_H
 # define T_GAME_H
 
+# include "t_direction_list.h"
 # include "t_map.h"
 # include "t_player.h"
 # include <stdbool.h>
@@ -21,10 +22,11 @@ typedef struct s_game	t_game;
 
 struct s_game
 {
-	t_map		map;
-	t_player	player;
-	t_image		minimap;
-	bool		has_to_be_displayed;
+	t_direction_list	directions;
+	t_map				map;
+	t_player			player;
+	t_image				minimap;
+	bool				has_to_be_displayed;
 };
 
 void	game_destroy(t_game *const game, void *const mlx_ptr)

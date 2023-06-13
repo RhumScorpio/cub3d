@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_axis_2d.h                                        :+:      :+:    :+:   */
+/*   direction_list_clear.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 00:09:12 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/21 00:13:12 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/12 21:54:48 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/12 23:14:00 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_AXIS_2D_H
-# define T_AXIS_2D_H
+#include "t_direction_list.h"
 
-# include <stdint.h>
-
-typedef struct s_axis_2d	t_axis_2d;
-
-struct s_axis_2d
+/**
+ * @brief	Remove every node from a direction list,
+ * 			clearing its stored data, and releasing its related memory.
+ * 
+ * @param	list A reference to the list to clear.
+ */
+void	direction_list_clear(t_direction_list *const list)
 {
-	uint16_t	x;
-	uint16_t	y;
-};
-
-#endif
+	while (list->size)
+		direction_list_del_one(list, list->head);
+}

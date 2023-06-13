@@ -6,14 +6,15 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:36:12 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/23 00:11:50 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/13 00:41:14 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_PLAYER_H
 # define T_PLAYER_H
 
-# include "t_axis_2d.h"
+# include "t_point_2d.h"
+# include "t_direction_node.h"
 # include <stddef.h>
 # include <stdint.h>
 
@@ -21,8 +22,9 @@ typedef struct s_player	t_player;
 
 struct s_player
 {
-	t_axis_2d	position;
-	double		direction;
+	t_point_2d				position_in_cell;
+	t_point_2d				position_in_map;
+	t_direction_node const	*direction;
 };
 
 void	player_destroy(t_player *const player)

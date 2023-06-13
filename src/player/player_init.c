@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:39:11 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/23 00:01:22 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/13 00:39:51 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ inline static char	*__strpbrk(char const *const str, char const *const set)
 }
 
 /**
- * @brief	Calculate and set the player's spawn axis
+ * @brief	Calculate and set the player's spawn coordinates
  * 			from its raw position in the map. 
  * 
- * @param	position A reference to the t_axis_2d instance
- * 			to initialize with the player's spawn axis.
+ * @param	position A reference to the t_point_2d instance
+ * 			to initialize with the player's spawn coordinates.
  * @param	ptr A pointer to the player's raw position in the map.
  * @param	cells A reference to the map cells.
  * @param	width The map width.
  */
 inline static void	__position(
-	t_axis_2d *const position,
+	t_point_2d *const position,
 	char const *const ptr,
 	char const *const cells,
 	uint16_t const width)
@@ -69,20 +69,13 @@ inline static void	__position(
  * 
  * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
  */
-inline static int	__direction(double *const direction, char const identifier)
+inline static int	__direction(
+	t_direction_node const **const direction,
+	char const identifier)
 {
-	size_t	i;
-
-	i = 0LU;
-	while (i < g_spawn_directions_size
-		&& identifier != g_spawn_directions[i].identifier)
-		++i;
-	if (i == g_spawn_directions_size)
-	{
-		ft_putstr_fd("Unknown player spawn identifier\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	*direction = g_spawn_directions[i].direction;
+	// TODO: Rework this function, using the directions linked list.
+	*direction = NULL;
+	(void)identifier;
 	return (EXIT_SUCCESS);
 }
 
@@ -107,6 +100,6 @@ int	player_init(
 		ft_putstr_fd("No player found in map\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	__position(&player->position, ptr, cells, width);
+	__position(&player->position_in_map, ptr, cells, width);
 	return (__direction(&player->direction, *ptr));
 }
