@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 01:04:14 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/15 08:51:23 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static char *const		g_window_title = "cub3D";
 /*                                    Map                                    */
 /* ************************************************************************* */
 static char const		g_map_chars[MAP_CHAR_COUNT] = "01ENWS ";
+
+static uint32_t const	g_map_cell_width = 1000000000U;
+static uint32_t const	g_map_cell_height = 1000000000U;
 
 /* ************************************************************************* */
 /*                                  Minimap                                  */

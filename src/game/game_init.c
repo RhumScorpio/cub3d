@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:42:27 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 00:41:43 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/15 09:14:21 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
  * @brief	Replace the player spawn by an empty cell.
  * 
  * @param	map A reference to the t_map instance to modify.
- * @param	position A reference to the t_point_2d instance
+ * @param	position A reference to the t_upoint16_2d instance
  * 			representing the player position.
  */
 inline static void	__erase_player_spawn(
 	t_map *const map,
-	t_point_2d const *const position)
+	t_upoint16_2d const *const position)
 {
 	map->cells[position->x + position->y * map->width]
 		= g_map_chars[MAP_CHAR_EMPTY_CELL];
@@ -53,7 +53,7 @@ inline static void	__fill_minimap(
  * @brief	Initialize a t_game instance.
  * 
  * @param	game A reference to the t_game instance to initialize.
- * @param	mlx_ptr A pointer to the mlx context to use for the initialization.
+ * @param	mlx_ptr A reference to the mlx context to use for the initialization.
  * 
  * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
  */
@@ -66,7 +66,11 @@ int	game_init(t_game *const game, void *const mlx_ptr)
 		return (ft_putstr_fd("map_init() failed\n", STDERR_FILENO),
 			direction_list_clear(&game->directions),
 			EXIT_FAILURE);
-	if (player_init(&game->player, game->map.cells, game->map.width))
+	if (player_init(
+			&game->player,
+			game->directions.head,
+			game->map.cells,
+			game->map.width))
 		return (ft_putstr_fd("player_init() failed\n", STDERR_FILENO),
 			map_destroy(&game->map, mlx_ptr),
 			direction_list_clear(&game->directions),
@@ -79,6 +83,5 @@ int	game_init(t_game *const game, void *const mlx_ptr)
 			direction_list_clear(&game->directions),
 			EXIT_FAILURE);
 	__fill_minimap(&game->minimap, &game->map, &game->player);
-	game->has_to_be_displayed = true;
-	return (EXIT_SUCCESS);
+	return (game->has_to_be_displayed = true, EXIT_SUCCESS);
 }

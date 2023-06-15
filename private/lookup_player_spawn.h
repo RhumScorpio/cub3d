@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lookup_spawn_direction.h                           :+:      :+:    :+:   */
+/*   lookup_player_spawn.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 23:24:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/23 00:03:53 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:58:39 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LOOKUP_SPAWN_DIRECTION_H
-# define LOOKUP_SPAWN_DIRECTION_H
+#ifndef LOOKUP_PLAYER_SPAWN_H
+# define LOOKUP_PLAYER_SPAWN_H
 
 # ifndef __USE_MISC
 #  define __USE_MISC 1
 # endif
 
+# include "config.h"
 # include <math.h>
+# include <stddef.h>
 
-typedef struct s_spawn_direction	t_spawn_direction;
+typedef struct s_player_spawn	t_player_spawn;
 
-struct s_spawn_direction
+struct s_player_spawn
 {
-	char const	identifier;
-	double		direction;
+	char const		identifier;
+	size_t const	jump_number;
+	bool const		through_next;
 };
 
-static t_spawn_direction const		g_spawn_directions[] = {
-{'E', 0},
-{'N', M_PI_2},
-{'W', M_PI},
-{'S', M_PI + M_PI_2},
+static t_player_spawn const		g_player_spawns[] = {
+{'E', 0, false},
+{'N', g_semi_quadrant_angle_number * 2, true},
+{'W', g_semi_quadrant_angle_number * 4, true},
+{'S', g_semi_quadrant_angle_number * 2, false},
 };
 
-static size_t const					g_spawn_directions_size
-	= sizeof(g_spawn_directions) / sizeof(*g_spawn_directions);
+static size_t const				g_player_spawns_size
+	= sizeof(g_player_spawns) / sizeof(*g_player_spawns);
 
 #endif

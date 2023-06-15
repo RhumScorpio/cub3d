@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 01:03:48 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/15 08:29:39 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,20 @@ inline static int	__init(
 {
 	*mlx_ptr = mlx_init();
 	if (!*mlx_ptr)
-	{
-		ft_putstr_fd("mlx_init() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (ft_putstr_fd("mlx_init() failed\n", STDERR_FILENO),
+			EXIT_FAILURE);
 	if (game_init(game, *mlx_ptr))
-	{
-		ft_putstr_fd("game_init() failed\n", STDERR_FILENO);
-		mlx_destroy_display(*mlx_ptr);
-		free(*mlx_ptr);
-		return (EXIT_FAILURE);
-	}
+		return (ft_putstr_fd("game_init() failed\n", STDERR_FILENO),
+			mlx_destroy_display(*mlx_ptr),
+			free(*mlx_ptr),
+			EXIT_FAILURE);
+	player_print(&game->player);
 	if (window_init(window, *mlx_ptr))
-	{
-		ft_putstr_fd("window_init() failed\n", STDERR_FILENO);
-		game_destroy(game, *mlx_ptr);
-		mlx_destroy_display(*mlx_ptr);
-		free(*mlx_ptr);
-		return (EXIT_FAILURE);
-	}
+		return (ft_putstr_fd("window_init() failed\n", STDERR_FILENO),
+			game_destroy(game, *mlx_ptr),
+			mlx_destroy_display(*mlx_ptr),
+			free(*mlx_ptr),
+			EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,15 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:16:07 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/22 23:29:31 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/14 01:11:55 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lookup_event.h"
 #include "t_hook_param.h"
-
-// DBG
-#include <stdio.h>
 
 /**
  * @brief	Call the appropriate game event function when a key is pressed.

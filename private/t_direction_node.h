@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:42:06 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/12 22:17:26 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:56:57 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_direction_node	t_direction_node;
 
 /**
- * @brief	A node of a doubly linked list to represent one possible
+ * @brief	A node of a doubly linked list representing one possible
  * 			direction and its associated vector that a player may have.
  */
 struct s_direction_node
