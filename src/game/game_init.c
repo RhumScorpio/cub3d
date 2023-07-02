@@ -6,11 +6,13 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:42:27 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 09:14:21 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:20:20 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "t_game.h"
 #include <stdlib.h>
@@ -47,6 +49,15 @@ inline static void	__fill_minimap(
 	t_map const *const map __attribute__((unused)),
 	t_player const *const player __attribute__((unused)))
 {
+	image_fill_rectangle(
+		minimap,
+		&(t_rectangle){
+		g_minimap_cell_width,
+		g_minimap_cell_height,
+		g_minimap_cell_color_empty},
+		&(t_upoint16_2d){
+		g_minimap_width / 2 - g_minimap_cell_width / 2,
+		g_minimap_height / 2 - g_minimap_cell_height / 2});
 }
 
 /**
@@ -60,28 +71,26 @@ inline static void	__fill_minimap(
 int	game_init(t_game *const game, void *const mlx_ptr)
 {
 	if (direction_list_init(&game->directions))
-		return (ft_putstr_fd("direction_list_init() failed\n", STDERR_FILENO),
-			EXIT_FAILURE);
+		return (error(ERROR_DIRECTION_LIST_INIT));
 	if (map_init(&game->map, mlx_ptr))
-		return (ft_putstr_fd("map_init() failed\n", STDERR_FILENO),
-			direction_list_clear(&game->directions),
-			EXIT_FAILURE);
+		return (direction_list_clear(&game->directions), error(ERROR_MAP_INIT));
 	if (player_init(
 			&game->player,
 			game->directions.head,
 			game->map.cells,
 			game->map.width))
-		return (ft_putstr_fd("player_init() failed\n", STDERR_FILENO),
+		return (
 			map_destroy(&game->map, mlx_ptr),
 			direction_list_clear(&game->directions),
-			EXIT_FAILURE);
+			error(ERROR_PLAYER_INIT));
 	__erase_player_spawn(&game->map, &game->player.position_in_map);
 	if (image_init(&game->minimap, g_minimap_width, g_minimap_height, mlx_ptr))
-		return (ft_putstr_fd("image_init() failed\n", STDERR_FILENO),
+		return (
 			player_destroy(&game->player),
 			map_destroy(&game->map, mlx_ptr),
 			direction_list_clear(&game->directions),
-			EXIT_FAILURE);
+			error(ERROR_IMAGE_INIT));
 	__fill_minimap(&game->minimap, &game->map, &game->player);
-	return (game->has_to_be_displayed = true, EXIT_SUCCESS);
+	game->has_to_be_displayed = true;
+	return (EXIT_SUCCESS);
 }

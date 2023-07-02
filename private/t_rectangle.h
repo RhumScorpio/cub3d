@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_quit.c                                       :+:      :+:    :+:   */
+/*   t_rectangle.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:44 by jodufour         ###   ########.fr       */
+/*   Created: 2023/05/20 23:51:46 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/23 00:23:55 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "t_event_param.h"
+#ifndef T_RECTANGLE_H
+# define T_RECTANGLE_H
 
-/**
- * @brief	End the mlx loop, allowing then to release resources
- * 			and exit the program.
- * 
- * @param	data A reference to the t_event_param instance to use
- * 			to end the mlx loop.
- */
-void	event_quit(t_event_param *const data)
+# include <stdint.h>
+
+typedef struct s_rectangle	t_rectangle;
+
+struct s_rectangle
 {
-	mlx_loop_end(data->mlx_ptr);
-}
+	uint16_t	width;
+	uint16_t	height;
+	uint32_t	color;
+};
+
+#endif

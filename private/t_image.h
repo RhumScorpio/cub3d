@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:16:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 09:14:38 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:23:37 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define T_IMAGE_H
 
 # include "t_upoint16_2d.h"
-# include "t_square.h"
+# include "t_rectangle.h"
 
 typedef struct s_image	t_image;
 
@@ -31,9 +31,9 @@ struct s_image
 
 void	image_destroy(t_image *const image, void *const mlx_ptr)
 		__attribute__((nonnull));
-void	image_fill_square(
+void	image_fill_rectangle(
 			t_image *const image,
-			t_square const *const square,
+			t_rectangle const *const rectangle,
 			t_upoint16_2d const *const point)
 		__attribute__((nonnull));
 

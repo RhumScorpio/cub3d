@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:49:09 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/24 09:53:35 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/02 15:51:30 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ enum e_map_char
 	MAP_CHAR_PLAYER_SPAWN_WEST,
 	MAP_CHAR_PLAYER_SPAWN_SOUTH,
 	MAP_CHAR_VOID_CELL,
-	MAP_CHAR_COUNT
+	MAP_CHAR_LEN
 };
 
 #endif

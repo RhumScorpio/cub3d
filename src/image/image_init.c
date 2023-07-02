@@ -6,10 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 22:56:26 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/14 23:07:29 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 01:45:15 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "mlx.h"
 #include "t_image.h"
@@ -33,10 +35,7 @@ int	image_init(
 {
 	image->ptr = mlx_new_image(mlx_ptr, width, height);
 	if (!image->ptr)
-	{
-		ft_putstr_fd("mlx_new_image() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_MLX_NEW_IMAGE));
 	image->addr = (uint32_t *)mlx_get_data_addr(
 			image->ptr,
 			(int *)&image->bpp,
@@ -44,9 +43,8 @@ int	image_init(
 			(int *)&image->endian);
 	if (!image->addr)
 	{
-		ft_putstr_fd("mlx_get_data_addr() failed\n", STDERR_FILENO);
 		mlx_destroy_image(mlx_ptr, image->ptr);
-		return (EXIT_FAILURE);
+		return (error(ERROR_MLX_GET_DATA_ADDR));
 	}
 	image->width = width;
 	image->height = height;

@@ -6,32 +6,36 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 00:23:56 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/20 23:46:21 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:39:46 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_game.h"
-#include "t_window.h"
-
-typedef struct s_data	t_data;
-
-struct s_data
-{
-	void *const		mlx_ptr;
-	t_game *const	game;
-};
+#include "lookup_player_action.h"
+#include "t_event_param.h"
 
 /**
- * @brief	Check wheither the current game render has changed since the last
- * 			time it has been displayed, and if so, re-display it.
+ * @brief	Apply the active actions,
+ * 			and re-display the game render if needed.
  * 
- * @param	raw_data A reference to the t_data instance to use
- * 			to check wheither re-displaying is needed, and if so, to do it.
+ * @param	data A reference to the t_event_param instance to use
+ * 			to apply the active actions,
+ * 			and to re-display the game render if needed.
  */
-void	event_none(void *const raw_data)
+void	event_none(t_event_param *const data)
 {
-	t_data *const	data = raw_data;
+	size_t	i;
 
+	i = 0LU;
+	while (i < g_player_actions_size)
+	{
+		if (g_player_actions[i].mask & data->game->player.actions)
+			g_player_actions[i].func(data);
+		++i;
+	}
 	if (data->game->has_to_be_displayed)
-		game_display(data);
+	{
+		player_print(&data->game->player);
+		game_display((t_hook_param * const)data);
+		data->game->has_to_be_displayed = false;
+	}
 }

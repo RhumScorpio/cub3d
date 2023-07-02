@@ -6,46 +6,30 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:57:46 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/22 21:24:04 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/23 01:06:53 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "t_game.h"
-#include "t_window.h"
-
-typedef struct s_data	t_data;
-
-struct s_data
-{
-	void *const		mlx_ptr;
-	t_game *const	game;
-	t_window *const	window;
-};
+#include "t_hook_param.h"
 
 inline static void	__minimap(
 	void *const mlx_ptr,
 	t_game *const game,
 	t_window *const window)
 {
-	mlx_put_image_to_window(
-		mlx_ptr,
-		window->ptr,
-		game->minimap.ptr,
-		0,
-		0);
+	mlx_put_image_to_window(mlx_ptr, window->ptr, game->minimap.ptr, 0, 0);
 }
 
 /**
  * @brief	Display the current game render into the window.
  * 
- * @param	raw_data A reference to the t_data instance to use
+ * @param	raw_data A reference to the t_hook_param instance to use
  * 			to display the current game render.
  */
 void	game_display(void *const raw_data)
 {
-	t_data *const	data = raw_data;
+	t_hook_param *const	data = raw_data;
 
 	__minimap(data->mlx_ptr, data->game, data->window);
-	data->game->has_to_be_displayed = false;
 }

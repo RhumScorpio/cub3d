@@ -6,10 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 15:42:03 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 08:29:39 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:27:50 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "hook.h"
 #include "mlx.h"
@@ -31,20 +33,18 @@ inline static int	__init(
 {
 	*mlx_ptr = mlx_init();
 	if (!*mlx_ptr)
-		return (ft_putstr_fd("mlx_init() failed\n", STDERR_FILENO),
-			EXIT_FAILURE);
+		return (error(ERROR_MLX_INIT));
 	if (game_init(game, *mlx_ptr))
-		return (ft_putstr_fd("game_init() failed\n", STDERR_FILENO),
+		return (
 			mlx_destroy_display(*mlx_ptr),
 			free(*mlx_ptr),
-			EXIT_FAILURE);
-	player_print(&game->player);
+			error(ERROR_GAME_INIT));
 	if (window_init(window, *mlx_ptr))
-		return (ft_putstr_fd("window_init() failed\n", STDERR_FILENO),
+		return (
 			game_destroy(game, *mlx_ptr),
 			mlx_destroy_display(*mlx_ptr),
 			free(*mlx_ptr),
-			EXIT_FAILURE);
+			error(ERROR_WINDOW_INIT));
 	return (EXIT_SUCCESS);
 }
 
@@ -74,6 +74,8 @@ int	main(
 	t_game		game;
 	t_window	window;
 
+	if (config_check())
+		return (error(ERROR_CONFIG));
 	if (__init(&mlx_ptr, &game, &window))
 		return (EXIT_FAILURE);
 	hook_setup(&(t_hook_param){mlx_ptr, &game, &window});

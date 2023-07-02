@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_quit.c                                       :+:      :+:    :+:   */
+/*   player_action_rotate_right.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:44 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/15 23:37:50 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/22 15:41:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "t_event_param.h"
+#include "t_player_action_param.h"
 
 /**
- * @brief	End the mlx loop, allowing then to release resources
- * 			and exit the program.
+ * @brief	Rotate the player to the right by 1 angle.
  * 
- * @param	data A reference to the t_event_param instance to use
- * 			to end the mlx loop.
+ * @param	data A reference to the t_player_action_param instance to use
+ * 			to rotate the player.
  */
-void	event_quit(t_event_param *const data)
+void	player_action_rotate_right(t_player_action_param *const data)
 {
-	mlx_loop_end(data->mlx_ptr);
+	data->game->player.direction = data->game->player.direction->prev;
+	data->game->has_to_be_displayed = true;
 }

@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:16:07 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 01:11:55 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:30:16 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	hook_key_press(int const keysym, t_hook_param *const data)
 	while (i < g_events_size && g_events[i].keysym != keysym)
 		++i;
 	if (i < g_events_size && g_events[i].func_press)
-		g_events[i].func_press(data);
+		g_events[i].func_press((t_event_param * const)data);
 }

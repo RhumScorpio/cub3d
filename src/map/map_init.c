@@ -6,10 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 22:31:59 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 08:30:55 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 01:50:00 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "ft_string.h"
 #include "t_map.h"
@@ -59,10 +61,12 @@ inline static int	__wall_textures(
 	{
 		if (image_init(&wall_textures[i], 42U, 42U, mlx_ptr))
 		{
-			ft_putstr_fd("image_init() failed\n", STDERR_FILENO);
 			while (i)
-				image_destroy(&wall_textures[--i], mlx_ptr);
-			return (EXIT_FAILURE);
+			{
+				--i;
+				image_destroy(&wall_textures[i], mlx_ptr);
+			}
+			return (error(ERROR_IMAGE_INIT));
 		}
 		++i;
 	}
@@ -82,10 +86,7 @@ int	map_init(t_map *const map, void *const mlx_ptr)
 {
 	map->cells = malloc(g_cells_test_size * sizeof(char));
 	if (!map->cells)
-	{
-		ft_putstr_fd("malloc() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_MALLOC));
 	if (__wall_textures(map->wall_textures, mlx_ptr))
 	{
 		free(map->cells);

@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:11:27 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/22 23:29:31 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:30:47 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	hook_key_release(int const keysym, t_hook_param *const data)
 	while (i < g_events_size && g_events[i].keysym != keysym)
 		++i;
 	if (i < g_events_size && g_events[i].func_release)
-		g_events[i].func_release(data);
+		g_events[i].func_release((t_event_param * const)data);
 }

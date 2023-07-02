@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_square.h                                         :+:      :+:    :+:   */
+/*   player_action_step_forward.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 23:51:46 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/21 00:05:11 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/15 23:41:19 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/22 15:43:02 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_SQUARE_H
-# define T_SQUARE_H
+#include "t_player_action_param.h"
 
-# include <stdint.h>
-
-typedef struct s_square	t_square;
-
-struct s_square
+/**
+ * @brief	Move the player forward by 1 step distance.
+ * 
+ * @param	data A reference to the t_player_action_param instance to use
+ * 			to move the player.
+ */
+void	player_action_step_forward(t_player_action_param *const data)
 {
-	uint16_t	width;
-	uint32_t	color;
-};
-
-#endif
+	// TODO: Implement the coordinates update
+	data->game->has_to_be_displayed = true;
+}

@@ -6,11 +6,13 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 00:48:42 by jodufour          #+#    #+#             */
-/*   Updated: 2023/05/15 00:21:39 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:25:19 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
+#include "cub3D.h"
+#include "e_error.h"
 #include "mlx.h"
 #include "t_window.h"
 #include <stdlib.h>
@@ -25,7 +27,7 @@
  */
 int	window_init(t_window *const window, void *const mlx_ptr)
 {
-	if (g_full_screen)
+	if (g_is_full_screen)
 		mlx_get_screen_size(
 			mlx_ptr,
 			(int *)&window->width,
@@ -41,6 +43,6 @@ int	window_init(t_window *const window, void *const mlx_ptr)
 			window->height,
 			g_window_title);
 	if (!window->ptr)
-		return (EXIT_FAILURE);
+		return (error(ERROR_MLX_NEW_WINDOW));
 	return (EXIT_SUCCESS);
 }

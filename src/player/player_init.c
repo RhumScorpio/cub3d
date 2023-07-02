@@ -6,10 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:39:11 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 09:05:27 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:17:44 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "ft_string.h"
 #include "lookup_player_spawn.h"
@@ -96,18 +98,18 @@ int	player_init(
 	while (*ptr)
 	{
 		i = 0LU;
-		while (i < g_player_spawns_size)
+		while (i < g_player_spawns_length)
 		{
 			if (*ptr == g_player_spawns[i].identifier)
 			{
 				__position(player, ptr, cells, width);
 				__direction(&player->direction, node, g_player_spawns + i);
+				player->actions = 0U;
 				return (EXIT_SUCCESS);
 			}
 			++i;
 		}
 		++ptr;
 	}
-	ft_putstr_fd("No player found in map\n", STDERR_FILENO);
-	return (EXIT_FAILURE);
+	return (error(ERROR_PLAYER_NOT_FOUND));
 }

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_quit.c                                       :+:      :+:    :+:   */
+/*   my_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:44 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/22 22:45:01 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/22 22:53:18 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "t_event_param.h"
+#ifndef MY_MATH_H
+# define MY_MATH_H
 
-/**
- * @brief	End the mlx loop, allowing then to release resources
- * 			and exit the program.
- * 
- * @param	data A reference to the t_event_param instance to use
- * 			to end the mlx loop.
- */
-void	event_quit(t_event_param *const data)
-{
-	mlx_loop_end(data->mlx_ptr);
-}
+# ifndef __USE_XOPEN
+#  define __USE_XOPEN	1
+# endif
+
+# include <math.h>
+
+#endif

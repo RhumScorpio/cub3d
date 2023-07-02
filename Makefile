@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 15:26:55 by jodufour          #+#    #+#              #
-#    Updated: 2023/06/14 00:47:33 by jodufour         ###   ########.fr        #
+#    Updated: 2023/07/03 00:48:31 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,18 @@ SRC				=	\
 					${addprefix event/,						\
 						event_none.c						\
 						event_quit.c						\
+						event_rotate_left.c					\
+						event_rotate_right.c				\
+						event_step_backward.c				\
+						event_step_forward.c				\
+						event_step_left.c					\
+						event_step_right.c					\
+						event_stop_rotate_left.c			\
+						event_stop_rotate_right.c			\
+						event_stop_step_backward.c			\
+						event_stop_step_forward.c			\
+						event_stop_step_left.c				\
+						event_stop_step_right.c				\
 					}										\
 					${addprefix game/,						\
 						game_destroy.c						\
@@ -93,7 +105,7 @@ SRC				=	\
 					}										\
 					${addprefix image/,						\
 						image_destroy.c						\
-						image_fill_square.c					\
+						image_fill_rectangle.c				\
 						image_init.c						\
 					}										\
 					${addprefix map/,						\
@@ -101,14 +113,27 @@ SRC				=	\
 						map_init.c							\
 					}										\
 					${addprefix player/,					\
+						${addprefix action/,				\
+							player_action_rotate_left.c		\
+							player_action_rotate_right.c	\
+							player_action_step_backward.c	\
+							player_action_step_forward.c	\
+							player_action_step_left.c		\
+							player_action_step_right.c		\
+						}									\
 						player_destroy.c					\
 						player_init.c						\
 						player_print.c						\
+					}										\
+					${addprefix util/,						\
+						has_duplicates_char.c				\
 					}										\
 					${addprefix window/,					\
 						window_destroy.c					\
 						window_init.c						\
 					}										\
+					config_check.c							\
+					error.c									\
 					main.c
 
 ######################################

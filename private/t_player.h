@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 01:36:12 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/15 09:14:50 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:20:09 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct s_player
 	t_upoint16_2d			position_in_map;
 	t_upoint32_2d			position_in_cell;
 	t_direction_node const	*direction;
+	uint8_t					actions;
 };
 
 void	player_destroy(t_player *const player)

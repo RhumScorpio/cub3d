@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_quit.c                                       :+:      :+:    :+:   */
+/*   e_action.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:44 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/15 19:19:11 by jodufour          #+#    #+#             */
+/*   Updated: 2023/07/02 15:23:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "t_event_param.h"
+#ifndef E_ACTION_H
+# define E_ACTION_H
 
-/**
- * @brief	End the mlx loop, allowing then to release resources
- * 			and exit the program.
- * 
- * @param	data A reference to the t_event_param instance to use
- * 			to end the mlx loop.
- */
-void	event_quit(t_event_param *const data)
+enum e_action
 {
-	mlx_loop_end(data->mlx_ptr);
-}
+	ACTION_ROTATE_LEFT,
+	ACTION_ROTATE_RIGHT,
+	ACTION_STEP_BACKWARD,
+	ACTION_STEP_FORWARD,
+	ACTION_STEP_LEFT,
+	ACTION_STEP_RIGHT,
+};
+
+#endif

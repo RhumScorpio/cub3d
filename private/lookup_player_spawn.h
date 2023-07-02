@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 23:24:39 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 15:58:39 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:14:31 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_player_spawn const		g_player_spawns[] = {
 {'S', g_semi_quadrant_angle_number * 2, false},
 };
 
-static size_t const				g_player_spawns_size
+static size_t const				g_player_spawns_length
 	= sizeof(g_player_spawns) / sizeof(*g_player_spawns);
 
 #endif

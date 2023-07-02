@@ -6,15 +6,17 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 23:00:52 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/14 01:01:06 by jodufour         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:08:58 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
+#include "cub3D.h"
+#include "e_error.h"
 #include "ft_io.h"
 #include "ft_string.h"
+#include "my_math.h"
 #include "t_direction_list.h"
-#include <math.h>
 #include <stdlib.h>
 
 static t_vector_2d const	g_cardinal_vectors[4U] = {
@@ -47,10 +49,7 @@ inline static int	__cardinal_and_ordinal(
 	{
 		ptrs[i] = direction_list_add_back(list, g_cardinal_vectors + i);
 		if (!ptrs[i])
-		{
-			ft_putstr_fd("direction_list_add_back() failed\n", STDERR_FILENO);
-			return (EXIT_FAILURE);
-		}
+			return (error(ERROR_DIRECTION_LIST_ADD_BACK));
 		ptrs[i + 4] = ptrs[i];
 		++i;
 	}
@@ -58,16 +57,13 @@ inline static int	__cardinal_and_ordinal(
 		!direction_list_add_after(list, ptrs[1], &(t_vector_2d){-xy, xy}) || \
 		!direction_list_add_after(list, ptrs[2], &(t_vector_2d){-xy, -xy}) || \
 		!direction_list_add_after(list, ptrs[3], &(t_vector_2d){xy, -xy}))
-	{
-		ft_putstr_fd("direction_list_add_after() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_AFTER));
 	return (EXIT_SUCCESS);
 }
 
 /**
- * @brief	Add 4 direction nodes
- * 			right after those pointed by the given pointers,
+ * @brief	Add 8 direction nodes
+ * 			right after and before those pointed by the given pointers,
  * 			and then save their address to the given pointers
  * 			for the next insertion of intermediate direction nodes.
  * 
@@ -80,7 +76,7 @@ inline static int	__cardinal_and_ordinal(
  * 
  * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
  */
-inline static int	__add_after_nodes(
+inline static int	__add_nodes(
 	t_direction_list *const list,
 	t_direction_node **const ptrs,
 	uint32_t const x,
@@ -88,76 +84,28 @@ inline static int	__add_after_nodes(
 {
 	ptrs[0] = direction_list_add_after(list, ptrs[0], &(t_vector_2d){x, y});
 	if (!ptrs[0])
-	{
-		ft_putstr_fd("direction_list_add_after() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_AFTER));
 	ptrs[1] = direction_list_add_after(list, ptrs[1], &(t_vector_2d){-y, x});
 	if (!ptrs[1])
-	{
-		ft_putstr_fd("direction_list_add_after() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_AFTER));
 	ptrs[2] = direction_list_add_after(list, ptrs[2], &(t_vector_2d){-x, -y});
 	if (!ptrs[2])
-	{
-		ft_putstr_fd("direction_list_add_after() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_AFTER));
 	ptrs[3] = direction_list_add_after(list, ptrs[3], &(t_vector_2d){y, -x});
 	if (!ptrs[3])
-	{
-		ft_putstr_fd("direction_list_add_after() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
-
-/**
- * @brief	Add 4 direction nodes
- * 			right before those pointed by the given pointers,
- * 			and then save their address to the given pointers
- * 			for the next insertion of intermediate direction nodes.
- * 
- * @param	list A reference to the list to add the nodes to.
- * @param	ptrs A reference to the array of 8 pointers
- * 			to use to insert the nodes,
- * 			and to save the addresses of the newly added nodes afterward.
- * @param	x The x vector component of the node to add in the first quadrant.
- * @param	y The y vector component of the node to add in the first quadrant.
- * 
- * @return	EXIT_SUCCESS, or EXIT_FAILURE if an error occured.
- */
-inline static int	__add_before_nodes(
-	t_direction_list *const list,
-	t_direction_node **const ptrs,
-	uint32_t const x,
-	uint32_t const y)
-{
+		return (error(ERROR_DIRECTION_LIST_ADD_AFTER));
 	ptrs[4] = direction_list_add_before(list, ptrs[4], &(t_vector_2d){x, -y});
 	if (!ptrs[4])
-	{
-		ft_putstr_fd("direction_list_add_before() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_BEFORE));
 	ptrs[5] = direction_list_add_before(list, ptrs[5], &(t_vector_2d){y, x});
 	if (!ptrs[5])
-	{
-		ft_putstr_fd("direction_list_add_before() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_BEFORE));
 	ptrs[6] = direction_list_add_before(list, ptrs[6], &(t_vector_2d){-x, y});
 	if (!ptrs[6])
-	{
-		ft_putstr_fd("direction_list_add_before() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_BEFORE));
 	ptrs[7] = direction_list_add_before(list, ptrs[7], &(t_vector_2d){-y, -x});
 	if (!ptrs[7])
-	{
-		ft_putstr_fd("direction_list_add_before() failed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
+		return (error(ERROR_DIRECTION_LIST_ADD_BEFORE));
 	return (EXIT_SUCCESS);
 }
 
@@ -188,8 +136,7 @@ inline static int	__intermediate(
 		angle_radian = angle * radian;
 		x = (uint32_t)(cos(angle_radian) * g_step_distance);
 		y = (uint32_t)(sin(angle_radian) * g_step_distance);
-		if (__add_after_nodes(list, ptrs, x, y) || \
-			__add_before_nodes(list, ptrs, x, y))
+		if (__add_nodes(list, ptrs, x, y))
 			return (EXIT_FAILURE);
 		++angle;
 	}
@@ -208,11 +155,6 @@ int	direction_list_init(t_direction_list *const list)
 	t_direction_node	*ptrs[8U];
 	uint8_t				i;
 
-	if (!g_semi_quadrant_angle_number)
-	{
-		ft_putstr_fd("g_semi_quadrant_angle_number is 0\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
 	ft_bzero(list, sizeof(*list));
 	if (__cardinal_and_ordinal(list, ptrs) || __intermediate(list, ptrs))
 	{

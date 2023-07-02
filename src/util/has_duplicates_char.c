@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   has_duplicates_char.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 23:30:49 by jodufour          #+#    #+#             */
-/*   Updated: 2023/07/03 00:49:05 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/28 18:49:06 by jodufour          #+#    #+#             */
+/*   Updated: 2023/07/02 20:30:03 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include <stdbool.h>
+#include <stddef.h>
 
-# include <stdbool.h>
-# include <stddef.h>
-
-void	event_none(void *const raw_data)
-		__attribute__((nonnull));
-
-int		config_check(void);
-int		error(int const error_no);
-
+/**
+ * @brief	Check wheither a char array has duplicate elements.
+ * 
+ * @param	arr A reference to the char array to check.
+ * @param	len The length of the array.
+ * 
+ * @return	true if the array has duplicate elements, false otherwise.
+ */
 bool	has_duplicates_char(char const *const arr, size_t const len)
-		__attribute__((nonnull));
+{
+	size_t	i0;
+	size_t	i1;
 
-#endif
+	i0 = 0LU;
+	while (i0 < len)
+	{
+		i1 = i0 + 1LU;
+		while (i1 < len)
+		{
+			if (arr[i0] == arr[i1])
+				return (true);
+			++i1;
+		}
+		++i0;
+	}
+	return (false);
+}

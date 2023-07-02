@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_quit.c                                       :+:      :+:    :+:   */
+/*   event_step_forward.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:02:45 by jodufour          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:44 by jodufour         ###   ########.fr       */
+/*   Created: 2023/06/15 13:24:01 by jodufour          #+#    #+#             */
+/*   Updated: 2023/06/22 15:22:37 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "e_action.h"
 #include "t_event_param.h"
 
 /**
- * @brief	End the mlx loop, allowing then to release resources
- * 			and exit the program.
+ * @brief	Make the player step forward.
  * 
  * @param	data A reference to the t_event_param instance to use
- * 			to end the mlx loop.
+ * 			to make the player step forward.
  */
-void	event_quit(t_event_param *const data)
+void	event_step_forward(t_event_param *const data)
 {
-	mlx_loop_end(data->mlx_ptr);
+	data->game->player.actions |= 1 << ACTION_STEP_FORWARD;
 }
